@@ -65,4 +65,5 @@ form.addEventListener('submit', (event) => {
     //6. limpio el formulario y muestro un mensaje de éxito.
     form.reset();
     alert('Registro exitoso. Ahora puedes iniciar sesión.');
+    window.location.href = '/src/pages/auth/login/login.html'; //redirijo a login
 });
