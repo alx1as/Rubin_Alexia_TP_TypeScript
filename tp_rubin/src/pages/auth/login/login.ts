@@ -46,14 +46,14 @@ form.addEventListener('submit', (event) => {
         user => user.email === email && user.password === password
     );
 
-    // primero chequeo si es el admin fijo
+    // primero chequeo si es el admin 
     if (email === adminUser.email && password === adminUser.password) {
         saveSession(adminUser);
         goToAdminHome();
         return;
     }
 
-    // si no es admin y tampoco existe en users, error
+    // si no es admin y tampoco existe en users salta error
     if (!userEncontrado) {
         alert('El email o contraseña están incorrectos.');
         return;
