@@ -1,8 +1,3 @@
-/* 
-pathname → ¿dónde estoy?
-user → ¿quién soy?
-href → ¿a dónde lo mando?
-*/
 import { getCurrentUser } from "./utils/auth";
 import { goToAdminHome, goToClientHome, goToLogin } from "./utils/navigate";
 
@@ -12,18 +7,22 @@ function checkSession(): void {
 
     const isLoginPage = actualPath.includes("login");
     const isRegisterPage = actualPath.includes("registro");
+    const isIndexPage = actualPath === "/" || actualPath.includes("index.html");
 
-    if (!user && !isLoginPage && !isRegisterPage) {
+    // si no hay sesión, dejo pasar solo páginas públicas
+    if (!user && !isLoginPage && !isRegisterPage && !isIndexPage) {
         goToLogin();
         return;
     }
 
+    // si es client y quiere entrar a admin, lo mando a su home
     if (user && user.role === "client" && actualPath.includes("/admin/")) {
         goToClientHome();
         return;
     }
 
-    if (user && (isLoginPage || isRegisterPage)) {
+    // si ya tiene sesión y entra a páginas públicas, lo mando a su home
+    if (user && (isLoginPage || isRegisterPage || isIndexPage)) {
         if (user.role === "admin") {
             goToAdminHome();
         } else {
