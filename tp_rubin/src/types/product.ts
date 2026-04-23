@@ -11,3 +11,5 @@ export interface CartItem {
   product: Product;
   quantity: number;
 }
+/* product guarda el producto completo
+quantity guarda cuántas unidades tiene en el carrito */

@@ -1,8 +1,8 @@
 //renderizado de productos, filtrado y busqueda por nombre.
 
-//1.
+//1. Renderizado de productos
 import { PRODUCTS, obtenerCategorias } from "../../../data/data";
-import type { Product } from "../../../types/product";
+import type { Product, CartItem } from "../../../types/product";
 
 function renderizarProductos(productos: Product[]): void { //1. recibe productos del array que cree en data llamado PRODUCTS. a la variable el nombre le pongo yo
     const contenedorProductos = document.getElementById('contenedor-productos'); //2. busco del html el contenedor
@@ -27,6 +27,9 @@ function renderizarProductos(productos: Product[]): void { //1. recibe productos
     })
 
 }
+
+
+
 
 // Función para el renderizado de las categorías, = que la anterior
 function renderizarCategorias (): void {
@@ -65,6 +68,10 @@ function renderizarCategorias (): void {
     })
 }
 
+
+
+
+
 // Busqueda por nombre //
 //traigo el formulario y el input del html
 const formularioBuscar = document.getElementById("form-busqueda") as HTMLFormElement | null;
@@ -97,6 +104,12 @@ formularioBuscar.addEventListener("submit", (evento) => {
     renderizarProductos(productoFiltradoPorNombre);
 });
 
+
+
+
+
+
+//Función para agregar producto al carrito
 
 
 
