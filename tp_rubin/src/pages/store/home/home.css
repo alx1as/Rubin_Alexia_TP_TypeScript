@@ -1,24 +1,66 @@
 :root {
-    --color-primario: #ff6347;
-    --color-fondo: #f0f0f0;
-    --color-texto: #333;
-    --color-blanco: #fff;
-    --color-borde: #ddd;
-    --color-focus: #ff4500;
+    --color-primario: #e76f51;
+    --color-primario-hover: #d65f43;
+    --color-fondo: #f7f4f1;
+    --color-superficie: #ffffff;
+    --color-texto: #2f2f2f;
+    --color-texto-suave: #666;
+    --color-borde: #ddd6cf;
+    --color-focus: #c8553d;
+    --color-categoria: #f3e7df;
+}
+
+* {
+    box-sizing: border-box;
+}
+/* MAIN */
+main {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 1.5rem 1rem 2rem;
+    display: grid;
+    grid-template-columns: 1fr 260px;
+    gap: 2rem;
+    align-items: start;
+}
+
+.contenido-principal {
+    min-width: 0;
+}
+
+
+/* CATEGORIAS */
+aside {
+    background: var(--color-superficie);
+    border: 1px solid var(--color-borde);
+    border-radius: 8px;
+    padding: 1rem;
+    position: sticky;
+    top: 20px;
+    height: fit-content;
+}
+
+
+html,
+body {
+    height: 100%;
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: var(--color-fondo);
+    color: var(--color-texto);
 }
 
 body {
-    background-color: var(--color-fondo);
-    color: var(--color-texto);
-    margin: 0;
-    font-family: Arial, Helvetica, sans-serif;
+    display: flex;
+    flex-direction: column;
 }
 
+/* HEADER */
 header {
     display: flex;
     background-color: var(--color-primario);
-    color: var(--color-blanco);
-    padding: 1rem;
+    color: white;
+    padding: 1rem 1.5rem;
     align-items: center;
     justify-content: space-between;
     gap: 1rem;
@@ -26,17 +68,20 @@ header {
 
 header h1 {
     margin: 0;
+    font-size: 2rem;
 }
 
 header nav {
     display: flex;
     gap: 1rem;
     align-items: center;
+    flex-wrap: wrap;
 }
 
 header a {
     text-decoration: none;
-    color: var(--color-blanco);
+    color: white;
+    font-size: 1rem;
 }
 
 header a:hover {
@@ -46,7 +91,7 @@ header a:hover {
 #logoutBtn {
     padding: 0.6rem 1rem;
     border: none;
-    background: var(--color-blanco);
+    background: white;
     color: var(--color-primario);
     border-radius: 6px;
     cursor: pointer;
@@ -54,18 +99,19 @@ header a:hover {
 }
 
 #logoutBtn:hover {
-    background: #ffe5df;
+    background: #fdf0eb;
 }
 
-aside {
-    padding: 1rem;
-}
+
+
 
 #lista-categorias {
     display: flex;
-    gap: 1rem;
-    background: var(--color-blanco);
-    border-bottom: 1px solid var(--color-borde);
+    gap: 0.8rem;
+    flex-wrap: wrap;
+    background: var(--color-superficie);
+    border: 1px solid var(--color-borde);
+    border-radius: 8px;
     padding: 1rem;
     margin: 0;
 }
@@ -75,67 +121,91 @@ aside {
 }
 
 .categoria-item a {
+    display: inline-block;
     text-decoration: none;
     color: var(--color-focus);
     font-weight: bold;
+    background-color: var(--color-categoria);
+    padding: 0.55rem 0.9rem;
+    border-radius: 6px;
+    transition: 0.2s;
 }
 
 .categoria-item a:hover {
-    color: var(--color-primario);
+    background-color: var(--color-primario);
+    color: white;
 }
 
+/* MAIN */
 main {
-    padding: 1rem;
-}
-
-main form {
-    display: flex;
-    gap: 0.5rem;
-    margin-bottom: 1.5rem;
-}
-
-main input {
-    padding: 0.7rem;
-    border: 1px solid var(--color-borde);
-    border-radius: 6px;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 1.5rem 1rem 2rem;
     flex: 1;
 }
 
+/* BUSCADOR */
+main form {
+    display: flex;
+    gap: 0.75rem;
+    margin-bottom: 1.5rem;
+    max-width: 850px;
+}
+
+main input {
+    padding: 0.8rem 1rem;
+    border: 1px solid var(--color-borde);
+    border-radius: 6px;
+    flex: 1;
+    font-size: 1rem;
+    background-color: white;
+}
+
+main input:focus {
+    outline: 2px solid #f1b6a8;
+    border-color: var(--color-focus);
+}
+
 main button[type="submit"] {
-    padding: 0.7rem 1rem;
+    padding: 0.8rem 1.2rem;
     border: none;
     background: var(--color-primario);
-    color: var(--color-blanco);
+    color: white;
     border-radius: 6px;
     cursor: pointer;
+    font-weight: bold;
 }
 
 main button[type="submit"]:hover {
-    background: var(--color-focus);
+    background: var(--color-primario-hover);
 }
 
+/* PRODUCTOS */
 #contenedor-productos {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(230px, 230px));
     gap: 1rem;
-    padding: 1rem 0;
+    justify-content: start;
+    padding: 0.5rem 0 1.5rem;
 }
 
 .producto-item {
     border: 1px solid var(--color-borde);
-    border-radius: 6px;
-    padding: 1rem;
-    background: var(--color-blanco);
+    border-radius: 8px;
+    padding: 0.9rem;
+    background: var(--color-superficie);
     display: flex;
     flex-direction: column;
-    gap: 0.5rem;
+    gap: 0.55rem;
 }
 
 .producto-item img {
     width: 100%;
-    height: 150px;
-    object-fit: cover;
-    border-radius: 4px;
+    height: 160px;
+    object-fit: contain;
+    background-color: #f8f8f8;
+    border-radius: 6px;
 }
 
 .producto-item h3,
@@ -144,27 +214,58 @@ main button[type="submit"]:hover {
     margin: 0;
 }
 
+.producto-item h3 {
+    font-size: 1.15rem;
+}
+
+.producto-item p {
+    color: var(--color-texto-suave);
+    line-height: 1.35;
+}
+
 .producto-item span {
     font-weight: bold;
+    color: var(--color-texto);
 }
 
 .agregar-btn {
+    margin-top: auto;
     padding: 0.7rem;
     border: none;
     background: var(--color-primario);
-    color: var(--color-blanco);
+    color: white;
     border-radius: 6px;
     cursor: pointer;
+    font-weight: bold;
 }
 
 .agregar-btn:hover {
-    background: var(--color-focus);
+    background: var(--color-primario-hover);
 }
 
+/* FOOTER */
 footer {
-    background: var(--color-blanco);
+    background: white;
     border-top: 1px solid var(--color-borde);
     padding: 1rem;
     text-align: center;
-    margin-top: 2rem;
+    margin-top: auto;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+    header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    main form {
+        flex-direction: column;
+        max-width: 100%;
+    }
+
+    #contenedor-productos {
+        grid-template-columns: 1fr;
+        justify-content: stretch;
+    }
 }

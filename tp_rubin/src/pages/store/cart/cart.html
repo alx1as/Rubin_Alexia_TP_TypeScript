@@ -1,13 +1,38 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Carrito</title>
+    <link rel="stylesheet" href="./cart.css">
 </head>
 <body>
-    <h1>Vista del carrito</h1>
-    <section id="contenedor-carrito"></section>
+    <header class="navbar">
+        <a href="../home/home.html" class="logo">Food Store</a>
+
+        <nav>
+            <a href="../home/home.html">Inicio</a>
+            <a href="./cart.html">Carrito</a>
+        </nav>
+    </header>
+
+    <main class="cart-main">
+        <section class="cart-header">
+            <h2>Mi carrito</h2>
+            <a href="../home/home.html" class="volver">← Seguir comprando</a>
+        </section>
+
+        <section class="cart-layout">
+            <section id="contenedor-carrito"></section>
+
+            <aside class="resumen">
+                <h3>Resumen</h3>
+                <p>Pedido listo para comprar.</p>
+                <button class="btn-comprar">Comprar</button>
+            </aside>
+        </section>
+    </main>
+
     <script type="module" src="/src/pages/store/cart/cart.ts"></script>
 </body>
 </html>
