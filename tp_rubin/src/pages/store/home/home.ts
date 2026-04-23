@@ -1,15 +1,7 @@
-//logica de renderizado
-/*Objetivos:
-1.Traigo los productos desde data.ts
-2. Busco el contenedor en el HTML
-3. Recorro los productos
-4. Creo un elemento por cada uno
-5. Lo agrego al DOM
- */
+//renderizado de productos, filtrado y busqueda por nombre.
 
 //1.
 import { PRODUCTS, obtenerCategorias } from "../../../data/data";
-
 import type { Product } from "../../../types/product";
 
 function renderizarProductos(productos: Product[]): void { //1. recibe productos del array que cree en data llamado PRODUCTS. a la variable el nombre le pongo yo
@@ -73,8 +65,45 @@ function renderizarCategorias (): void {
     })
 }
 
+// Busqueda por nombre //
+//traigo el formulario y el input del html
+const formularioBuscar = document.getElementById("form-busqueda") as HTMLFormElement | null;
+const inputBuscar = document.getElementById("input-busqueda") as HTMLInputElement | null;
+//verifico que existan en el dom
+if (!formularioBuscar || !inputBuscar) {
+    throw new Error ("No se encontro el formulario o input.")
+}
+
+// agrego un evento para escuchar el submit del input:
+formularioBuscar.addEventListener("submit", (evento) => {
+    evento.preventDefault(); //evita recargue de pag
+    //guardo el texto del input en la constante texto buscado, elimino espacios con trim y paso a minusculas el texto.
+    const textoBuscado = inputBuscar.value.trim().toLocaleLowerCase();
+
+    //Filtramos
+    const productoFiltradoPorNombre = PRODUCTS.filter((producto)=> {
+        return producto.name.toLocaleLowerCase().includes(textoBuscado) //busco en productos si alguno coincide con el texto bscado.
+    });
+
+    //si no hay coincidencia:
+    if (productoFiltradoPorNombre.length===0) {
+       const contenedorProductos = document.getElementById("contenedor-productos");
+       if (!contenedorProductos) return;
+       contenedorProductos.innerHTML = "<p> No se encontraron productos.</p>"
+       return;
+    }
+
+    //si hay coincidencia:
+    renderizarProductos(productoFiltradoPorNombre);
+});
+
+
+
+
+
 
  //renderizo productos pasando el array como argumento de la funcion :
 renderizarProductos(PRODUCTS);
 //renderizado de categorias 
 renderizarCategorias();
+//renderizado por nombre
