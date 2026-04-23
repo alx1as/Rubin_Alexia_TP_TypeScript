@@ -8,13 +8,14 @@
  */
 
 //1.
-import { PRODUCTS, obtenerCategorias } from "../../../data/data.ts";
+import { PRODUCTS, obtenerCategorias } from "../../../data/data";
 
-function renderizarProductos (productos: typeof PRODUCTS) { //1. recibe productos del array que cree en data llamado PRODUCTS. a la variable el nombre le pongo yo
+import type { Product } from "../../../types/product";
+
+function renderizarProductos(productos: Product[]): void { //1. recibe productos del array que cree en data llamado PRODUCTS. a la variable el nombre le pongo yo
     const contenedorProductos = document.getElementById('contenedor-productos'); //2. busco del html el contenedor
     if (!contenedorProductos) return;
     contenedorProductos.innerHTML = ""; //esta limpieza evita duplicados
-
 
     productos.forEach((producto)=> { //3.
         const articuloProducto = document.createElement("article"); //creo un <article> por cada producto.
@@ -34,5 +35,46 @@ function renderizarProductos (productos: typeof PRODUCTS) { //1. recibe producto
     })
 
 }
+
+// Función para el renderizado de las categorías, = que la anterior
+function renderizarCategorias (): void {
+    const listaCategorias = document.getElementById('lista-categorias'); //busco en el html la lista de categorias
+    if (!listaCategorias) return;
+    listaCategorias.innerHTML = ""; //evita duplicados
+
+    //traigo las categorias desde data;
+    const categorias = obtenerCategorias();
+
+    //VER TODOS LOS PRODUCTOS
+    const itemTodos = document.createElement("li");
+        itemTodos.textContent = "Todos los productos";
+        itemTodos.classList.add("categoria-item"); //le agrego clase tambien
+        itemTodos.addEventListener("click", () => {renderizarProductos(PRODUCTS)});
+        listaCategorias.appendChild(itemTodos);
+
+    //recorro el array:
+    categorias.forEach((categoria)=> {
+        
+        const itemCategoria= document.createElement("li"); //un li para cada categoria
+        itemCategoria.classList.add("categoria-item");
+        itemCategoria.textContent = categoria;
+
+
+
+        //renderizado por categoria -> agregamos un evento que escuche el clic
+        itemCategoria.addEventListener("click", () => {
+            //filtrado:
+            const filtroPorCategoria = PRODUCTS.filter(
+                (producto) => producto.category === categoria);
+            renderizarProductos(filtroPorCategoria); //renderizado condicional reutilizando funcion anterior.
+        });
+                //agrego el li dentro de la ul
+        listaCategorias.appendChild(itemCategoria)
+    })
+}
+
+
  //renderizo productos pasando el array como argumento de la funcion :
 renderizarProductos(PRODUCTS);
+//renderizado de categorias 
+renderizarCategorias();
