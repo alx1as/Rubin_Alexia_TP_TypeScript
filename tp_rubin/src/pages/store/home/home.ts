@@ -21,6 +21,13 @@ function renderizarProductos(productos: Product[]): void { //1. recibe productos
       <span>$${producto.price}</span>
       <button class="agregar-btn">Agregar</button>
     `;
+                            //(parentesis) boton agregar -> le pongo un evento para el carrito.
+                                const botonAgregar = articuloProducto.querySelector(".agregar-btn") as HTMLButtonElement | null;
+                                    if (botonAgregar) {
+                                        botonAgregar.addEventListener("click", () => {
+                                            agregarAlCarrito(producto);
+                                        });
+                                    }
 
         //5. ahora agrego el producto al contenedor principal:
      contenedorProductos.appendChild(articuloProducto);
@@ -110,7 +117,28 @@ formularioBuscar.addEventListener("submit", (evento) => {
 
 
 //Función para agregar producto al carrito
+function agregarAlCarrito(productoElegido:Product): void {
+    const carritoGuardado = localStorage.getItem("cart"); //busco si hay algo en localstorage con la clave cart.
+    //si existe lo convierto en array, sino, arranco un array vacío:
+    let carrito : CartItem[] = carritoGuardado ? JSON.parse(carritoGuardado) : []
 
+    //verifico si el producto ya esta en el carrito:
+    const productoExistente = carrito.find(
+        (item) => item.product.id === productoElegido.id);
+    //si existe aumento 1 en quantity
+    if(productoExistente){
+        productoExistente.quantity += 1;
+    } else { //si no existe agrego el producto entero en el array carrito.
+        carrito.push({
+            product: productoElegido,
+            quantity: 1
+        });
+    }
+
+    //guardo el carrito actualizado:
+    localStorage.setItem('cart', JSON.stringify(carrito));
+    alert("Producto agregado con éxito.")
+}
 
 
 
