@@ -3,35 +3,57 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Carrito</title>
+    <title>Carrito | Food Store</title>
     <link rel="stylesheet" href="./cart.css">
 </head>
 <body>
     <header class="navbar">
-        <a href="../home/home.html" class="logo">Food Store</a>
+        <div class="logo">
+            <a href="../home/home.html">Food Store</a>
+        </div>
 
-        <nav>
+        <nav class="nav-links">
             <a href="../home/home.html">Inicio</a>
-            <a href="./cart.html">Carrito</a>
+            <a href="../home/home.html">Seguir comprando</a>
+            <a href="./cart.html" class="activo">Carrito</a>
         </nav>
     </header>
 
-    <main class="cart-main">
+    <main class="cart-page">
         <section class="cart-header">
-            <h2>Mi carrito</h2>
-            <a href="../home/home.html" class="volver">← Seguir comprando</a>
+            <h1>Tu carrito</h1>
+            <p>Revisá tus productos antes de finalizar la compra</p>
         </section>
 
         <section class="cart-layout">
-            <section id="contenedor-carrito"></section>
+            <section class="cart-products">
+                <div id="contenedor-carrito"></div>
+            </section>
 
-            <aside class="resumen">
-                <h3>Resumen</h3>
-                <p>Pedido listo para comprar.</p>
-                <button class="btn-comprar">Comprar</button>
+            <aside class="cart-summary">
+                <h2>Resumen</h2>
+                <p>Acá podés ver tu pedido antes de comprar.</p>
+
+                <div class="summary-box">
+                    <p>Envío: <span>A coordinar</span></p>
+                    <p>Checkout: <span>No implementado</span></p>
+                </div>
+
+                <button class="btn-comprar-falso" type="button">
+                    Comprar ahora
+                </button>
+
+                <a href="../home/home.html" class="btn-volver">
+                    Volver al home
+                </a>
             </aside>
         </section>
     </main>
+
+    <footer class="footer">
+        <p>© 2026 Food Store. Todos los derechos reservados.</p>
+        <p>Contacto: info@foodstore.com</p>
+    </footer>
 
     <script type="module" src="/src/pages/store/cart/cart.ts"></script>
 </body>
