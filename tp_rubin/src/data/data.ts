@@ -49,7 +49,7 @@ export const PRODUCTS: Product[] = [
   // BEBIDAS
   {
     id: 6,
-    name: "Gaseosa",
+    name: "Coca Cola",
     description: "Bebida fría de 500 ml.",
     price: 2500,
     category: "Bebidas",

@@ -88,15 +88,19 @@ if (!formularioBuscar || !inputBuscar) {
     throw new Error ("No se encontro el formulario o input.")
 }
 
-// agrego un evento para escuchar el submit del input:
-formularioBuscar.addEventListener("submit", (evento) => {
-    evento.preventDefault(); //evita recargue de pag
+function buscarProductosPorNombre(): void {
     //guardo el texto del input en la constante texto buscado, elimino espacios con trim y paso a minusculas el texto.
-    const textoBuscado = inputBuscar.value.trim().toLocaleLowerCase();
+    const textoBuscado = inputBuscar!.value.trim().toLocaleLowerCase();
+
+    //si el input esta vacio vuelvo a mostrar todos los productos
+    if (textoBuscado === "") {
+        renderizarProductos(PRODUCTS);
+        return;
+    }
 
     //Filtramos
     const productoFiltradoPorNombre = PRODUCTS.filter((producto)=> {
-        return producto.name.toLocaleLowerCase().includes(textoBuscado) //busco en productos si alguno coincide con el texto bscado.
+        return producto.name.toLocaleLowerCase().includes(textoBuscado) //busco en productos si alguno coincide con el texto buscado.
     });
 
     //si no hay coincidencia:
@@ -109,9 +113,16 @@ formularioBuscar.addEventListener("submit", (evento) => {
 
     //si hay coincidencia:
     renderizarProductos(productoFiltradoPorNombre);
+}
+
+// agrego un evento para escuchar mientras la persona escribe en el input:
+inputBuscar.addEventListener("input", buscarProductosPorNombre);
+
+// dejo tambien el submit por si la persona aprieta Enter o el boton de buscar:
+formularioBuscar.addEventListener("submit", (evento) => {
+    evento.preventDefault(); //evita recargue de pag
+    buscarProductosPorNombre();
 });
-
-
 
 
 

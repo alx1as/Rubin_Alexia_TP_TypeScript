@@ -1,0 +1,1 @@
+{"root":["./src/main.ts","./src/data/data.ts","./src/pages/admin/home.ts","./src/pages/auth/login/login.ts","./src/pages/auth/registro/registro.ts","./src/pages/store/cart/cart.ts","./src/pages/store/home/home.ts","./src/types/IUser.ts","./src/types/Rol.ts","./src/types/categoria.ts","./src/types/product.ts","./src/utils/auth.ts","./src/utils/navigate.ts"],"version":"6.0.3"}
