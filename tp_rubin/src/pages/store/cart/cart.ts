@@ -19,10 +19,6 @@ function renderizarCarrito():void {
     //limpio contenedor antes de renderizar
     contenedorCarrito.innerHTML="";
 
-    if (carrito.length === 0) {
-    contenedorCarrito.innerHTML = "<p>El carrito está vacío.</p>";
-    return;
-}
 
     //recorro el arreglo y por cada uno creo article, y muestro nombre precio y cantidad
     carrito.forEach((item)=> {
